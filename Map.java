@@ -9,11 +9,17 @@ public class Map {
     // creates a new map using the user input
     public Map(String input) {
 
-	String[] input_values = input.split("\\s+");
+	try {
+	    String[] input_values = input.split("\\s+");
 
-	// sets up the grid size of the map
-	x_size = Integer.parseInt(input_values[0]);
-	y_size = Integer.parseInt(input_values[1]);
+	    // sets up the grid size of the map
+	    x_size = Integer.parseInt(input_values[0]);
+	    y_size = Integer.parseInt(input_values[1]);
+
+	} catch (NumberFormatException e) {
+	    System.out.println("Invalid input for map size.");
+	    System.exit(0);
+	}
 	// creates a new empty list of locations robots have fallen
 	MarkedLocations = new ArrayList<MarkedLocation>();
 

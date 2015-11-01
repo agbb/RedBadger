@@ -34,6 +34,7 @@ public class Main {
 	    if (add_more_input.equals("N")) {
 		// all robots added.
 		repeat = false;
+		scan.close();
 	    }
 	}
 

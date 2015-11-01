@@ -12,11 +12,20 @@ public class Robot {
     // instructions.
     public Robot(String start_input, String moves_input) {
 
-	String[] input_values = start_input.split(" ");
-	// set initial location and orientation
-	x_loc = Integer.parseInt(input_values[0]);
-	y_loc = Integer.parseInt(input_values[1]);
-	orientation = Orientation.valueOf(input_values[2]);
+	try {
+	    String[] input_values = start_input.split(" ");
+	    // set initial location and orientation
+	    x_loc = Integer.parseInt(input_values[0]);
+	    y_loc = Integer.parseInt(input_values[1]);
+	    orientation = Orientation.valueOf(input_values[2]);
+	} catch (NumberFormatException e) {
+	    System.out.println("Invalid input for robot starting location");
+	    System.exit(0);
+	} catch (IllegalArgumentException e) {
+	    System.out
+	    .println("Invalid input for robt starting location orientation");
+	    System.exit(0);
+	}
 
 	this.instructions = moves_input;
     }
@@ -58,7 +67,7 @@ public class Robot {
 		// increment orientation anticlockwise.
 		orientation = Orientation.values()[orientation.ordinal() - 1];
 	    }
-	    break;
+	break;
 
 	// turn Right, adjust orientation
 	case ('R'):
@@ -70,7 +79,7 @@ public class Robot {
 		orientation = Orientation.values()[orientation.ordinal() + 1];
 	    }
 
-	    break;
+	break;
 
 	// move forwards, adjust location depending on orientation
 	case ('F'):
@@ -93,7 +102,11 @@ public class Robot {
 
 	    }
 
-	    break;
+	break;
+
+	default:
+	    System.out.println("Invalid robot instructions, cannot continue");
+	    System.exit(0);
 
 	}
     }
